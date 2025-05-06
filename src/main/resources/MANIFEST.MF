@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Plugin-Classes: com.cisco.josouthe.ISO8583OutboundInterceptor,com.cisco.josouthe.ISO8583InboundInterceptor
+
