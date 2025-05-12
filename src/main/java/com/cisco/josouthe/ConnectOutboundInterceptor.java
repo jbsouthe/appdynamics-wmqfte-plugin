@@ -52,7 +52,7 @@ public class ConnectOutboundInterceptor extends MyBaseInterceptor {
         propertyMap.put("Local Address", getReflectiveString(wmqConnectionData, getLocalAddressR, "Unknown"));
         propertyMap.put("Connection Name", getReflectiveString(wmqConnectionData, getConnectionNameR, "Unknown"));
         propertyMap.put("Remote Application Tag", getReflectiveString(wmqConnectionData, getRemoteApplicationTagR, "Unknown"));
-        ExitCall exitCall = transaction.startExitCall( propertyMap, String.format("IBM-MQ-message"), ExitTypes.CUSTOM, true);
+        ExitCall exitCall = null; //transaction.startExitCall( propertyMap, String.format("IBM-MQ-message"), ExitTypes.CUSTOM, true);
         return new State(transaction, exitCall, transactionStartedHere);
     }
 
@@ -64,7 +64,8 @@ public class ConnectOutboundInterceptor extends MyBaseInterceptor {
         if( exception != null ) {
             s.transaction.markAsError(String.format("Exit Call threw Exception: '%s' ", exception.toString()));
         }
-        s.exitCall.end();
+        if( s.exitCall != null )
+            s.exitCall.end();
         if( s.startedHere ) s.transaction.end();
     }
 
