@@ -5,6 +5,14 @@
   <artifactId>IBMWMQFTEPlugin</artifactId>
   <version>1.0</version>
   <!-- <packaging>jar</packaging>  -->
+    <properties>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>yyyyMMdd</maven.build.timestamp.format>
+        <version>1.0</version>
+        <project.java.version>1.8</project.java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
 
   <dependencies>
       <!-- added locally mvn install:install-file -Dfile=javaagent.jar -DgroupId=com.appdynamics -DartifactId=javaagent -Dversion=24.4.1 -Dpackaging=jar -DgeneratePom=true -->
