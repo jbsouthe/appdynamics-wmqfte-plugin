@@ -29,12 +29,11 @@ public class QueueDestinationInterceptor extends MyBaseInterceptor{
     @Override
     public Object onMethodBegin (Object objectIntercepted, String className, String methodName, Object[] params) {
         Object mqMessage = params[0];
-        Object mqgmo = params[1];
         Transaction transaction = AppdynamicsAgent.getTransaction();
         boolean transactionStartedHere = false;
         if( transaction instanceof NoOpTransaction) {
             //return null;
-            transaction = AppdynamicsAgent.startTransaction(String.format("IBM MQ FTE %s %s", methodName, getName(objectIntercepted)), getCorrelationHeader(params[0]), EntryTypes.POJO, true);
+            transaction = AppdynamicsAgent.startTransaction(String.format("IBM MQ FTE %s %s", methodName, getName(objectIntercepted)), getCorrelationHeader(mqMessage), EntryTypes.POJO, true);
             transactionStartedHere = true;
             getLogger().debug("WARNING, no transaction active, but backend called");
         }
